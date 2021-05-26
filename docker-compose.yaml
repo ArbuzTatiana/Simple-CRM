@@ -44,9 +44,11 @@ services:
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     volumes:
-      - ./app/runtime/data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
     ports:
       - "9906:${MYSQL_PORT}"
+volumes:
+  mysql-data:
 
 networks:
   app:
