@@ -1,51 +1,53 @@
-version: '3.7'
+version: '3.3'
 
 services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: db
+      DB_DATABASE: "${MYSQL_DATABASE}"
+      DB_USERNAME: "${MYSQL_USER}"
+      DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app/backend
+    depends_on:
+      - db
+    networks:
+      - app
+    user: "${UID}:${GID}"
 
-    backend:
-        build:
-            context: ./backend
-            dockerfile: Dockerfile
-        environment:
-            DB_HOST: db
-            DB_DATABASE: simpleCRM
-            DB_USERNAME: root
-            DB_PASSWORD: root
-        ports:
-          - 8000:8000
-        volumes:
-          - ./backend:/app/backend
-        depends_on:
-            - db
 
-        networks:
-            - app
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/frontend
+    depends_on:
+      - backend
+    networks:
+      - app
+    user: "${UID}:${GID}"
 
-
-    frontend:
-        build:
-            context: ./frontend
-            dockerfile: Dockerfile
-        tty: true
-        ports:
-            - 3000:3000
-        volumes:
-            - ./frontend:/app/frontend
-        depends_on:
-            - backend
-        networks:
-            - app
-
-    db:
-        image: mysql:5.7.22
-        environment:
-            MYSQL_DATABASE: 'simpleCRM'
-            MYSQL_USER: 'root'
-            MYSQL_PASSWORD: 'root'
-            MYSQL_ROOT_PASSWORD: 'root'
-        networks:
-            - app
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./app/runtime/data:/var/lib/mysql
+    ports:
+      - "9906:${MYSQL_PORT}"
 
 networks:
-    app:
-        driver: bridge
+  app:
+    driver: bridge
