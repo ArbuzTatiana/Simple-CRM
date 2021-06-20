@@ -3,3 +3,7 @@ mysql-data/*
 
 .idea/
 /vendor
+
+.env
+
+router.txt
