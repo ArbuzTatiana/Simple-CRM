@@ -24,6 +24,8 @@ class EmployeesTableSeeder extends Seeder
 				'company_id' => $faker->numberBetween( 1, 50 ),
 				'email' => $faker->email,
 				'phone_number'=>$faker->phoneNumber,
+				'created_at' => now(),
+				'updated_at' => now(),
 			] );
 		}
 	}

@@ -16,4 +16,9 @@ class Company extends Model
     	'website',
     	'image_url',
 	];
+
+    public function employee()
+	{
+		return $this->belongsToMany(Employee::class, 'employees');
+	}
 }

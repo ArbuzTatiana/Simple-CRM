@@ -24,6 +24,8 @@ class CompaniesTableSeeder extends Seeder
 				'phone_number' => $faker->phoneNumber,
 				'website' => $faker->domainName,
 				'image_url' => $faker->image( null, 360, 360, 'animals', true ),
+				'created_at' => now(),
+				'updated_at' => now(),
 			] );
 		}
 
