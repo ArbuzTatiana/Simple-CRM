@@ -1,40 +1,57 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
+.wrap{
+    display: block;
+    margin-top: 60px;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+}
+
+.tableWrap{
+    margin-top: 90px;
+    padding: 0 50px;
+}
+.tableWrap h2{
+    text-align: left;
+}
 
 /*ROUTING*/
 /*NAVBAR*/
-.navBar{
-  background: #000;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  text-transform: uppercase;
-  padding: 0.5rem calc((100vw - 1000px) / 2);
-  z-index: 10;
+.navBar {
+    background: #000;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    padding: 0.5rem calc((100vw - 1000px) / 2);
+    z-index: 10;
 }
 
 /*NAV*/
-
-.nav li{
-  display: inline-block;
+.nav li {
+    padding: 20px;
+    display: inline-block;
 }
 
-.nav li a{
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
-  cursor: pointer;
+.nav li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
 }
-.nav .activeLink{
-  color: #15cdfc;
+
+.nav .activeLink {
+    color: #15cdfc;
 }
 
 /*PAGE HOME*/
+
+
 
 /*PAGE COMPANIES*/
 
