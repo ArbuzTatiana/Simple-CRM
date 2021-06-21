@@ -2,37 +2,40 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*ROUTING*/
+/*NAVBAR*/
+.navBar{
+  background: #000;
+  height: 60px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  text-transform: uppercase;
+  padding: 0.5rem calc((100vw - 1000px) / 2);
+  z-index: 10;
+}
+
+/*NAV*/
+
+.nav li{
+  display: inline-block;
+}
+
+.nav li a{
+  color: #fff;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+.nav .activeLink{
+  color: #15cdfc;
 }
 
-.App-link {
-  color: #61dafb;
-}
+/*PAGE HOME*/
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*PAGE COMPANIES*/
+
+/*PAGE EMPLOYEES*/
