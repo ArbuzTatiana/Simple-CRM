@@ -1,12 +1,14 @@
 import React from 'react';
-import './../../App.css';
-import DataTable from './../Common/DataTable';
+import '../../App.css';
+import CompaniesList from '../Components/Company/CompaniesList';
+import CompanyContextProvider from './../Contexts/CompanyContext';
 
 const Companies = () => {
     return (
         <div className="tableWrap">
-            <h2>Companies list</h2>
-            <DataTable />
+            <CompanyContextProvider>
+                <CompaniesList/>
+            </CompanyContextProvider>
         </div>
     )
 };
