@@ -15,8 +15,12 @@ const CompanyContextProvider = (props) => {
             });
     }, [setCompanies]);
 
-    const addCompany = () => {
-
+    const addCompany = (id, name, email, phone_number, website, image) => {
+        return axios.post(`http://127.0.0.1:8000/api/companies`,  {id, name, email, phone_number, website, image} )
+        // setCompanies([...companies, {id, name, email, phone_number, website, image}])
+            .then( res => {
+                return res.data
+            })
     };
     const deleteCompany = () => {
     };
