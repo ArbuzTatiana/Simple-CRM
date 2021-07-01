@@ -1,14 +1,14 @@
 import React from 'react';
 import '../../App.css';
 import CompaniesList from '../Components/Company/CompaniesList';
-import CompanyContextProvider from './../Contexts/CompanyContext';
+import CompanyContext from '../Contexts/CompanyContext';
 
 const Companies = () => {
     return (
         <div className="tableWrap">
-            <CompanyContextProvider>
+            <CompanyContext>
                 <CompaniesList/>
-            </CompanyContextProvider>
+            </CompanyContext>
         </div>
     )
 };

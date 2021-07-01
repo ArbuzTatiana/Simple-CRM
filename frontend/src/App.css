@@ -2,31 +2,47 @@
     text-align: center;
 }
 
-.wrap{
+.wrap {
     display: block;
     margin-top: 60px;
     box-sizing: border-box;
     font-family: 'Oswald', sans-serif;
 }
 
-.tableWrap{
+/*TABLE*/
+
+.tableWrap {
     margin-top: 90px;
     padding: 0 50px;
 }
-.tableWrap h2{
+
+.table-title{
+    color: #1a202c;
+    padding-bottom: 30px;
+    text-align: right;
+}
+
+.table-title h2{
     text-align: left;
 }
 
 /*ROUTING*/
 /*NAVBAR*/
 .navBar {
-    background: #000;
     height: 80px;
     display: flex;
+    background-color: #1a202c;
     justify-content: space-between;
     text-transform: uppercase;
     padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
+    border-bottom: 1px solid lightgrey;
+}
+
+.navBar .logo{
+    font-size: 35px;
+    font-weight: 700;
+    color: #ebebeb;
 }
 
 /*NAV*/
@@ -36,7 +52,7 @@
 }
 
 .nav li a {
-    color: #fff;
+    color: #ebebeb;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -46,13 +62,12 @@
 }
 
 .nav .activeLink {
-    color: #15cdfc;
+    color: darkorange;
+    font-weight: 700;
 }
 
 /*PAGE HOME*/
-
-
-
 /*PAGE COMPANIES*/
-
 /*PAGE EMPLOYEES*/
+
+/*PAGINATION*/
