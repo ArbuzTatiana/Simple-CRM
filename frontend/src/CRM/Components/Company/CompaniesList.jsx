@@ -60,7 +60,7 @@ const CompaniesList = () => {
                         <tbody>
                         {
                             companies.map(company => (
-                                <tr >
+                                <tr>
                                     <CompanyData company={company}/>
                                 </tr>
                             ))

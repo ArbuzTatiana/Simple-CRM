@@ -22,7 +22,6 @@ const CompanyContextProvider = (props) => {
         }
     };
 
-
     const addCompany = async (id, name, email, phone_number, website, image) => {
         try {
             await companiesAPI.addCompany(id, name, email, phone_number, website, image);
@@ -35,24 +34,33 @@ const CompanyContextProvider = (props) => {
     };
 
     const deleteCompany = async (id) => {
-        try{
+        try {
             dispatch({type: 'DELETE_COMPANY', payload: id});
             await companiesAPI.deleteCompany(id);
-
-
-
-        }catch (err){
+        } catch (err) {
             console.log(err);
         }
 
     };
-    const updateCompany = () => {
+
+    const updateCompany = async (id, updatedCompany) => {
+        try {
+            dispatch({type: 'UPDATE_COMPANY', payload: {id, updatedCompany}});
+            await companiesAPI.updateCompany(id, updatedCompany);
+            const update = await updateAPI.getCompaniesList();
+            dispatch({type: 'SET_COMPANY_LIST', payload: update.data});
+
+        } catch (err) {
+            console.log(err);
+        }
+
     };
 
     return (
         <CompanyContext.Provider value={{
             companies: companies,
-            requestCompanies, pageSize, totalCoCount, currentPage, addCompany, deleteCompany
+            requestCompanies, pageSize, totalCoCount, currentPage,
+            addCompany, deleteCompany, updateCompany
         }}
         >
             {props.children}

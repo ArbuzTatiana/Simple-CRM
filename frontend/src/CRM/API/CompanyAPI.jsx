@@ -32,5 +32,12 @@ export const companiesAPI = {
             .then(response => {
                 return response.data
             })
-    }
+    },
+
+    updateCompany(id, updatedCompany) {
+        return instance.put(`/${id}`, updatedCompany)
+            .then(response => {
+                return response.data
+            })
+    },
 };

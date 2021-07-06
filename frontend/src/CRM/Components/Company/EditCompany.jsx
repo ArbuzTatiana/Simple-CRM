@@ -2,24 +2,24 @@ import React, {useContext, useState} from 'react';
 import {Form, Button} from "react-bootstrap";
 import {CompanyContext} from "../../Contexts/CompanyContext";
 
-const AddCompany = () => {
+const EditCompany = ({theCompanies}) => {
 
-    const {addCompany} = useContext(CompanyContext);
+    const id = theCompanies.id;
 
-    const [newCompany, setNewCompany] = useState({
-        id: "", name: "", email: "", phone_number: "", website: "", image: ""
-    });
+    const [name, setName] = useState(theCompanies.name);
+    const [email, setEmail] = useState(theCompanies.email);
+    const [phone_number, setPhone] = useState(theCompanies.phone_number);
+    const [website, setWebsite] = useState(theCompanies.website);
+    const [image, setImage] = useState(theCompanies.image);
 
-    const onInputChange = (e) => {
-        setNewCompany({...newCompany, [e.target.name]: e.target.value})
-    };
+    const {updateCompany} = useContext(CompanyContext);
 
-    const {id, name, email, phone_number, website, image} = newCompany;
+    const updatedCompany = { name, email, phone_number, website, image};
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addCompany(id, name, email, phone_number, website, image);
-    };
+        updateCompany(id, updatedCompany)
+    }
 
     return (
         <div>
@@ -30,8 +30,7 @@ const AddCompany = () => {
                         placeholder="Name *"
                         name="name"
                         value={name}
-                        onChange={(e) => onInputChange(e)}
-                        required
+                        onChange={(e)=> setName(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -40,8 +39,7 @@ const AddCompany = () => {
                         placeholder="Email *"
                         name="email"
                         value={email}
-                        onChange={(e) => onInputChange(e)}
-                        required
+                        onChange={(e)=> setEmail(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -50,8 +48,8 @@ const AddCompany = () => {
                         placeholder="Phone"
                         name="phone_number"
                         value={phone_number}
-                        onChange={(e) => onInputChange(e)}
-                        required
+                        onChange={(e)=> setPhone(e.target.value)}
+
                     />
                 </Form.Group>
                 <Form.Group>
@@ -60,7 +58,9 @@ const AddCompany = () => {
                         placeholder="website *"
                         name="website"
                         value={website}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e)=> setWebsite(e.target.value)}
+
+
                     />
                 </Form.Group>
                 <Form.Group>
@@ -69,15 +69,16 @@ const AddCompany = () => {
                         placeholder="logo *"
                         name="logo"
                         value={image}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e)=> setImage(e.target.value)}
+
                     />
                 </Form.Group>
                 <Button variant="success" type="submit" block>
-                    Add New Company
+                    Edit New Company
                 </Button>
             </Form>
         </div>
     )
 }
 
-export default AddCompany;
+export default EditCompany;

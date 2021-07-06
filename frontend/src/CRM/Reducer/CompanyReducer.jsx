@@ -26,10 +26,16 @@ const CompanyReducer = (state = initialState, action) => {
             };
 
         case 'DELETE_COMPANY':
-            return{
+            return {
                 ...state,
                 companies: state.companies.filter(company => company.id !== action.payload)
-            }
+            };
+
+        case 'EDIT_COMPANY':
+            return {
+                ...state,
+                companies: state.companies.map((company) => company.id === action.payload.id ? {...action.payload} : company)
+            };
 
         case 'SET_CURRENT_PAGE':
             return {
