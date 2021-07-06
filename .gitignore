@@ -1,2 +1,9 @@
 mysql-data/*
 !mysql-data/.gitkeep
+
+.idea/
+/vendor
+
+.env
+
+router.txt
