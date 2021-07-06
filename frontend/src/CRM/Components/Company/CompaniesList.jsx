@@ -22,10 +22,13 @@ const CompaniesList = () => {
         requestCompanies(pageNumber)
     };
 
-
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+
+    useEffect(() => {
+        handleClose()
+    }, [companies]);
 
     return (
         <div className="wrap">
@@ -57,7 +60,7 @@ const CompaniesList = () => {
                         <tbody>
                         {
                             companies.map(company => (
-                                <tr key={company.id}>
+                                <tr >
                                     <CompanyData company={company}/>
                                 </tr>
                             ))
