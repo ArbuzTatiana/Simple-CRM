@@ -1,7 +1,11 @@
-import React from 'react';
-import { Modal, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, {useContext} from 'react';
+import {CompanyContext} from './../../Contexts/CompanyContext';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const CompanyData = ({company}) => {
+
+    const {deleteCompany} = useContext(CompanyContext);
+
     return (
         <>
             <td>{company.id}</td>
@@ -26,7 +30,7 @@ const CompanyData = ({company}) => {
                             Delete
                         </Tooltip>
                     }>
-                    <button className="btn text-danger btn-act" data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
+                    <button onClick={() => deleteCompany(company.id)} className="btn text-danger btn-act" data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
             </td>
 

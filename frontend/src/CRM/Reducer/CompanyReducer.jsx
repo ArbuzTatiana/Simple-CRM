@@ -1,5 +1,6 @@
 export const SET_COMPANY_LIST = 'SET_COMPANY_LIST';
 const SET_NEW_COMPANY = 'SET_NEW_COMPANY';
+const DELETE_COMPANY = 'DELETE_COMPANY';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COMPANIES_COUNT = 'SET_TOTAL_COMPANIES_COUNT';
 
@@ -23,6 +24,12 @@ const CompanyReducer = (state = initialState, action) => {
                 ...state,
                 newCompany: [...state.companies, action.payload]
             };
+
+        case 'DELETE_COMPANY':
+            return{
+                ...state,
+                companies: state.companies.filter(company => company.id !== action.payload)
+            }
 
         case 'SET_CURRENT_PAGE':
             return {

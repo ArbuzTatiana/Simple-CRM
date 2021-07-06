@@ -9,7 +9,7 @@ export const CompanyContext = createContext({
 const CompanyContextProvider = (props) => {
 
     const [state, dispatch] = useReducer(CompanyReducer, initialState);
-    const {companies, pageSize, totalCoCount, currentPage, newCompany} = state;
+    const {companies, pageSize, totalCoCount, currentPage} = state;
 
     const requestCompanies = async (page) => {
         try {
@@ -34,7 +34,17 @@ const CompanyContextProvider = (props) => {
 
     };
 
-    const deleteCompany = () => {
+    const deleteCompany = async (id) => {
+        try{
+            dispatch({type: 'DELETE_COMPANY', payload: id});
+            await companiesAPI.deleteCompany(id);
+
+
+
+        }catch (err){
+            console.log(err);
+        }
+
     };
     const updateCompany = () => {
     };
@@ -42,7 +52,7 @@ const CompanyContextProvider = (props) => {
     return (
         <CompanyContext.Provider value={{
             companies: companies,
-            requestCompanies, pageSize, totalCoCount, currentPage, addCompany, newCompany
+            requestCompanies, pageSize, totalCoCount, currentPage, addCompany, deleteCompany
         }}
         >
             {props.children}

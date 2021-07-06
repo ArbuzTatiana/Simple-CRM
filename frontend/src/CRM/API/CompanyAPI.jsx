@@ -25,5 +25,12 @@ export const companiesAPI = {
             .then(response => {
                 return response.data
             })
+    },
+
+    deleteCompany(id) {
+        return instance.delete(`/${id}`)
+            .then(response => {
+                return response.data
+            })
     }
 };
