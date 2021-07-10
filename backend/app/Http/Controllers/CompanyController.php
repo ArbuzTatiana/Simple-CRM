@@ -55,7 +55,7 @@ class CompanyController extends Controller
 			$save = $company->image_url = $fileNameToStore;
 
 			if ($save) {
-				$file->storeAs( 'public/companies', $fileNameToStore );
+				$file->storeAs( 'crm/companies', $fileNameToStore );
 			}
 		}
 		$company->save();
