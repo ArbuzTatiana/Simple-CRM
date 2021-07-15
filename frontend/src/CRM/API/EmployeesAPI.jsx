@@ -5,8 +5,8 @@ const instance = axios.create({
 });
 
 export const employeesAPI = {
-    getEmployees(){
-        return  instance.get('employees')
+    getEmployees(currentPage){
+        return  instance.get(`employees?page=${currentPage}`)
             .then(response => {
                 return response.data
     })

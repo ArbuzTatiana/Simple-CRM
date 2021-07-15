@@ -2,11 +2,12 @@ import React, {useContext, useState, useEffect} from 'react';
 import {Table, Row, Container, Button, Modal} from 'react-bootstrap';
 import {EmployeesContext} from '../../Contexts/EmployeesContext';
 import EmployeesData from '../../Components/Employees/EmployeeData';
+import Paginator from "../Paginator";
 
 const EmployeesList = () => {
 
     const employeeState = useContext(EmployeesContext);
-    const {employees, requestEmployees} = employeeState;
+    const {employees, requestEmployees, pageSize, totalCoCount, currentPage} = employeeState;
 
     // console.log(employees)
 
@@ -14,12 +15,15 @@ const EmployeesList = () => {
         if (employees.length === 0) {
             requestEmployees()
         }
-    }, [requestEmployees])
+    }, [requestEmployees, currentPage])
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    let onPageChanged = (pageNumber) => {
+        requestEmployees(pageNumber)
+    };
     useEffect(() => {
         handleClose()
     }, [employees]);
@@ -76,12 +80,12 @@ const EmployeesList = () => {
                     </Modal>
                 </Row>
 
-                {/*<Row>*/}
-                    {/*<Paginator pageSize={pageSize}*/}
-                               {/*totalCoCount={totalCoCount}*/}
-                               {/*currentPage={currentPage}*/}
-                               {/*onPageChanged={onPageChanged}/>*/}
-                {/*</Row>*/}
+                <Row>
+                    <Paginator pageSize={pageSize}
+                               totalCoCount={totalCoCount}
+                               currentPage={currentPage}
+                               onPageChanged={onPageChanged}/>
+                </Row>
             </Container>
         </div>
     )
