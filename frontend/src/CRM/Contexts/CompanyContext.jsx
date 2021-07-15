@@ -22,20 +22,21 @@ const CompanyContextProvider = (props) => {
         }
     };
 
-    const addCompany = async (id, name, email, phone_number, website, image) => {
+    const addCompany = async (newCompany) => {
         try {
-            await companiesAPI.addCompany(id, name, email, phone_number, website, image);
+            dispatch({type: "SET_NEW_COMPANY", payload: newCompany});
+            await companiesAPI.addCompany(newCompany);
             const update = await updateAPI.getCompaniesList();
-            dispatch({type: 'SET_COMPANY_LIST', payload: update.data});
+            console.log(update)
+            dispatch({type: "SET_COMPANY_LIST", payload: update.data});
         } catch (err) {
             console.log(err);
         }
-
     };
 
     const deleteCompany = async (id) => {
         try {
-            dispatch({type: 'DELETE_COMPANY', payload: id});
+            dispatch({type: "DELETE_COMPANY", payload: id});
             await companiesAPI.deleteCompany(id);
         } catch (err) {
             console.log(err);
@@ -45,15 +46,15 @@ const CompanyContextProvider = (props) => {
 
     const updateCompany = async (id, updatedCompany) => {
         try {
-            dispatch({type: 'UPDATE_COMPANY', payload: {id, updatedCompany}});
-            await companiesAPI.updateCompany(id, updatedCompany);
+            const res = await companiesAPI.updateCompany(id, updatedCompany);
+            dispatch({type: "EDIT_COMPANY", payload: {id, updatedCompany}});
+            console.log(res)
             const update = await updateAPI.getCompaniesList();
-            dispatch({type: 'SET_COMPANY_LIST', payload: update.data});
+            dispatch({type: "SET_COMPANY_LIST", payload: update.data});
 
         } catch (err) {
             console.log(err);
         }
-
     };
 
     return (

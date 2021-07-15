@@ -1,12 +1,11 @@
 import React, {useContext, useState, useEffect} from 'react';
 import './../../../App.css';
-import {CompanyContext} from './../../Contexts/CompanyContext';
+import {EmployeesContext} from './../../Contexts/EmployeesContext';
 import {OverlayTrigger, Tooltip, Modal, Button} from 'react-bootstrap';
-import EditCompany from './EditCompany';
 
-const CompanyData = ({company}) => {
+const EmployeeData = ({employee}) => {
 
-    const {deleteCompany} = useContext(CompanyContext);
+    const {} = useContext(EmployeesContext);
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -14,34 +13,34 @@ const CompanyData = ({company}) => {
 
     useEffect(() => {
         handleClose()
-    }, [company]);
+    }, [employee]);
 
     return (
         <>
-            <td>{company.id}</td>
-            <td>{company.name}</td>
-            <td>{company.email}</td>
-            <td>{company.phone_number}</td>
-            <td>{company.website}</td>
-            <td><img className="imagePreview" src={"http://127.0.0.1:8000/storage/crm/companies/" + company.image_url}/></td>
+            <td>{employee.id}</td>
+            <td>{employee.first_name}</td>
+            <td>{employee.last_name}</td>
+            <td>{employee.company_id}</td>
+            <td>{employee.email}</td>
+            <td>{employee.phone_number}</td>
 
             <td>
                 <OverlayTrigger
                     overlay={
-                        <Tooltip id={`tooltip-top`}>
+                        <Tooltip id={`top`}>
                             Edit
                         </Tooltip>
                     }>
-                    <button onClick={handleShow} className="btn text-warning btn-act" data-toggle="modal"><i
+                    <button className="btn text-warning btn-act" data-toggle="modal"><i
                         className="material-icons">&#xE254;</i></button>
                 </OverlayTrigger>
                 <OverlayTrigger
                     overlay={
-                        <Tooltip id={`tooltip-top`}>
+                        <Tooltip id={`top`}>
                             Delete
                         </Tooltip>
                     }>
-                    <button onClick={() => deleteCompany(company.id)} className="btn text-danger btn-act"
+                    <button className="btn text-danger btn-act"
                             data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
             </td>
@@ -51,7 +50,7 @@ const CompanyData = ({company}) => {
                     <Modal.Title>Edit Company</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <EditCompany theCompanies={company}/>
+                    Edit
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -65,4 +64,4 @@ const CompanyData = ({company}) => {
     )
 };
 
-export default CompanyData;
+export default EmployeeData;

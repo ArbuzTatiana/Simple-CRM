@@ -1,10 +1,15 @@
 import React from 'react';
 import './../../App.css';
+import EmployeesList from './../Components/Employees/EmployeesList';
+import EmployeesContext from './../Contexts/EmployeesContext';
 
 const Employees = () => {
     return (
         <div className="tableWrap">
-            <h2>Employees list</h2>
+            <EmployeesContext>
+                <EmployeesList/>
+            </EmployeesContext>
+
         </div>
     )
 };

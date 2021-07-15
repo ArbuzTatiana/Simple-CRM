@@ -20,8 +20,13 @@ export const companiesAPI = {
                 return response.data
             })
     },
-    addCompany(id, name, email, phone_number, website, image) {
-        return instance.post('', {id, name, email, phone_number, website, image})
+
+    addCompany(newCompany) {
+        return instance.post('', newCompany, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => {
                 return response.data
             })
@@ -35,7 +40,12 @@ export const companiesAPI = {
     },
 
     updateCompany(id, updatedCompany) {
-        return instance.put(`/${id}`, updatedCompany)
+        updatedCompany.append("_method", "put");
+        return instance.post(`/${id}`, updatedCompany, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => {
                 return response.data
             })

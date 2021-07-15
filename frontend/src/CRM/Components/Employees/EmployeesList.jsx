@@ -1,26 +1,20 @@
 import React, {useContext, useState, useEffect} from 'react';
-import CompanyData from './CompanyData';
 import {Table, Row, Container, Button, Modal} from 'react-bootstrap';
-import {CompanyContext} from '../../Contexts/CompanyContext';
-import AddCompany from './AddCompany';
-import Paginator from "../Paginator";
+import {EmployeesContext} from '../../Contexts/EmployeesContext';
+import EmployeesData from '../../Components/Employees/EmployeeData';
 
+const EmployeesList = () => {
 
-const CompaniesList = () => {
+    const employeeState = useContext(EmployeesContext);
+    const {employees, requestEmployees} = employeeState;
 
-    const companyState = useContext(CompanyContext);
-    const {companies, requestCompanies, pageSize, totalCoCount, currentPage} = companyState;
+    // console.log(employees)
 
     useEffect(() => {
-        let {currentPage} = companyState;
-        if (companies.length === 0) {
-            requestCompanies(currentPage);
+        if (employees.length === 0) {
+            requestEmployees()
         }
-    }, [requestCompanies, currentPage]);
-
-    let onPageChanged = (pageNumber) => {
-        requestCompanies(pageNumber)
-    };
+    }, [requestEmployees])
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -28,7 +22,7 @@ const CompaniesList = () => {
 
     useEffect(() => {
         handleClose()
-    }, [companies]);
+    }, [employees]);
 
     return (
         <div className="wrap">
@@ -36,11 +30,11 @@ const CompaniesList = () => {
                 <div className="table-title">
                     <Row>
                         <div className="col-sm-6">
-                            <h2>Manage <b>Companies</b></h2>
+                            <h2>Manage <b>Employees</b></h2>
                         </div>
                         <div className="col-sm-6">
                             <Button onClick={handleShow} className="btn btn-success" data-toggle="modal">
-                                <span>Add Company</span></Button>
+                                <span>Add Employee</span></Button>
                         </div>
                     </Row>
                 </div>
@@ -49,20 +43,20 @@ const CompaniesList = () => {
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Company</th>
                             <th>Email</th>
                             <th>Phone number</th>
-                            <th>Website</th>
-                            <th>Logo</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         {
-                            companies.map(company => (
-                                <tr key={company.name}>
-                                    <CompanyData company={company}/>
-                                </tr>
+                            employees.map(employee => (
+                                    <tr key={employee.id}>
+                                            <EmployeesData employee={employee}/>
+                                    </tr>
                             ))
                         }
                         </tbody>
@@ -72,7 +66,7 @@ const CompaniesList = () => {
                             <Modal.Title>Add Company</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <AddCompany/>
+                            Privet
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
@@ -82,15 +76,15 @@ const CompaniesList = () => {
                     </Modal>
                 </Row>
 
-                <Row>
-                    <Paginator pageSize={pageSize}
-                               totalCoCount={totalCoCount}
-                               currentPage={currentPage}
-                               onPageChanged={onPageChanged}/>
-                </Row>
+                {/*<Row>*/}
+                    {/*<Paginator pageSize={pageSize}*/}
+                               {/*totalCoCount={totalCoCount}*/}
+                               {/*currentPage={currentPage}*/}
+                               {/*onPageChanged={onPageChanged}/>*/}
+                {/*</Row>*/}
             </Container>
         </div>
     )
 };
 
-export default CompaniesList;
+export default EmployeesList;

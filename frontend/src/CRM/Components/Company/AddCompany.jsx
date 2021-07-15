@@ -6,20 +6,32 @@ const AddCompany = () => {
 
     const {addCompany} = useContext(CompanyContext);
 
-    const [newCompany, setNewCompany] = useState({
-        id: "", name: "", email: "", phone_number: "", website: "", image: ""
-    });
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone_number, setPhone] = useState("");
+    const [website, setWebsite] = useState("");
+    const [image_url, setImage] = useState("");
 
-    const onInputChange = (e) => {
-        setNewCompany({...newCompany, [e.target.name]: e.target.value})
-    };
-
-    const {id, name, email, phone_number, website, image} = newCompany;
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        addCompany(id, name, email, phone_number, website, image);
+
+        const newCompany = new FormData();
+        newCompany.append("name", name);
+        newCompany.append("email", email);
+        newCompany.append("phone_number", phone_number);
+        newCompany.append("website", website);
+        newCompany.append("image_url", image_url);
+
+        addCompany(newCompany);
     };
+
+    const onPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            setImage(e.target.files[0]);
+        }
+    }
 
     return (
         <div>
@@ -30,7 +42,7 @@ const AddCompany = () => {
                         placeholder="Name *"
                         name="name"
                         value={name}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e) => setName(e.target.value)}
                         required
                     />
                 </Form.Group>
@@ -40,7 +52,7 @@ const AddCompany = () => {
                         placeholder="Email *"
                         name="email"
                         value={email}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </Form.Group>
@@ -50,7 +62,7 @@ const AddCompany = () => {
                         placeholder="Phone"
                         name="phone_number"
                         value={phone_number}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e) => setPhone(e.target.value)}
                         required
                     />
                 </Form.Group>
@@ -60,19 +72,18 @@ const AddCompany = () => {
                         placeholder="website *"
                         name="website"
                         value={website}
-                        onChange={(e) => onInputChange(e)}
+                        onChange={(e) => setWebsite(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control
-                        type="image"
+                    <Form.File
+                        type="file"
                         placeholder="logo *"
                         name="logo"
-                        value={image}
-                        onChange={(e) => onInputChange(e)}
-                    />
+                        onChange={onPhotoSelected}
+                        file input/>
                 </Form.Group>
-                <Button variant="success" type="submit" block>
+                <Button onClick={handleSubmit} variant="success" type="submit" block>
                     Add New Company
                 </Button>
             </Form>
