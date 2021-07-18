@@ -14,8 +14,9 @@ class EmployeeController extends Controller
 	 */
 	public function index()
 	{
-		$employees = Employee::orderBy( 'id', 'DESC' )->paginate( 15 );
-		return response()->json( $employees );
+		$employees = Employee::orderBy( 'id', 'DESC' )->with('company')->paginate( 15 );
+
+		return response()->json( $employees);
 	}
 
 	/**
