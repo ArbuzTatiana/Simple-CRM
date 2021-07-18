@@ -2,14 +2,13 @@ import React, {useContext, useState, useEffect} from 'react';
 import {Table, Row, Container, Button, Modal} from 'react-bootstrap';
 import {EmployeesContext} from '../../Contexts/EmployeesContext';
 import EmployeesData from '../../Components/Employees/EmployeeData';
+import AddEmplyees from '../../Components/Employees/AddEmplyees';
 import Paginator from "../Paginator";
 
 const EmployeesList = () => {
 
     const employeeState = useContext(EmployeesContext);
     const {employees, requestEmployees, pageSize, totalCoCount, currentPage} = employeeState;
-
-    // console.log(employees)
 
     useEffect(() => {
         if (employees.length === 0) {
@@ -67,10 +66,10 @@ const EmployeesList = () => {
                     </Table>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Add Company</Modal.Title>
+                            <Modal.Title>Add Employee</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Privet
+                            <AddEmplyees/>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>

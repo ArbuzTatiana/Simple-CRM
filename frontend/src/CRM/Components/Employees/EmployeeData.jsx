@@ -15,12 +15,13 @@ const EmployeeData = ({employee}) => {
         handleClose()
     }, [employee]);
 
+
     return (
         <>
             <td>{employee.id}</td>
             <td>{employee.first_name}</td>
             <td>{employee.last_name}</td>
-            <td>{employee.company_id}</td>
+            <td>{employee?.company?.name}</td>
             <td>{employee.email}</td>
             <td>{employee.phone_number}</td>
 

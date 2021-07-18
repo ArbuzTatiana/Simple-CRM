@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from "react";
 import EmployeesReducer, {initialState} from "./../Reducer/EmployeesReducer";
-import {employeesAPI} from "../API/EmployeesAPI";
+import {employeesAPI, updateAPI} from "../API/EmployeesAPI";
 
 export const EmployeesContext = createContext({
     ...initialState
@@ -23,10 +23,22 @@ const EmployeesContextProvider = (props) => {
         }
     };
 
+    const addEmployee = async (newEmployee) => {
+        try {
+            dispatch({type: "SET_NEW_EMPLOYEE", payload: newEmployee});
+            await employeesAPI.addEmployee(newEmployee);
+            const update = await updateAPI.getEmployeesList();
+            dispatch({type: "GET_EMPLOYEE_LIST", payload: update.data});
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <EmployeesContext.Provider value={{
             employees: employees,
             requestEmployees, pageSize, totalCoCount, currentPage,
+            addEmployee,
         }}>
             {props.children}
         </EmployeesContext.Provider>

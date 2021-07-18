@@ -17,6 +17,24 @@ const EmployeesReducer = (state = initialState, action) => {
                 ...state,
                 employees: action.payload
             };
+
+        case 'SET_NEW_EMPLOYEE':
+            return {
+                ...state,
+                newEmployee: [...state.employees, action.payload]
+            };
+
+        case 'DELETE_COMPANY':
+            return {
+                ...state,
+                companies: state.companies.filter(company => company.id !== action.payload)
+            };
+
+        case 'EDIT_COMPANY':
+            return {
+                ...state,
+                companies: state.companies.map((company) => company.id === action.payload.id ? {...action.payload} : company)
+            };
         case 'SET_CURRENT_PAGE':
             return {
                 ...state,
