@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resources([
+Route::apiResources([
 	'companies' => \App\Http\Controllers\CompanyController::class,
 	'employees' => \App\Http\Controllers\EmployeeController::class,
 ]);
+
+

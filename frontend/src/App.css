@@ -1,38 +1,80 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wrap {
+    display: block;
+    margin-top: 60px;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*TABLE*/
+
+.tableWrap {
+    margin-top: 90px;
+    padding: 0 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.table-title{
+    color: #1a202c;
+    padding-bottom: 30px;
+    text-align: right;
 }
 
-.App-link {
-  color: #61dafb;
+.table-title h2{
+    text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*ROUTING*/
+/*NAVBAR*/
+.navBar {
+    height: 80px;
+    display: flex;
+    background-color: #1a202c;
+    justify-content: space-between;
+    text-transform: uppercase;
+    padding: 0.5rem calc((100vw - 1000px) / 2);
+    z-index: 10;
+    border-bottom: 1px solid lightgrey;
 }
+
+.navBar .logo{
+    font-size: 35px;
+    font-weight: 700;
+    color: #ebebeb;
+}
+
+/*NAV*/
+.nav li {
+    padding: 20px;
+    display: inline-block;
+}
+
+.nav li a {
+    color: #ebebeb;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+}
+
+.nav .activeLink {
+    color: darkorange;
+    font-weight: 700;
+}
+
+/*PAGE HOME*/
+/*PAGE COMPANIES*/
+/*PAGE EMPLOYEES*/
+
+/*PAGINATION*/
+
+/*IMAGES*/
+.imagePreview {
+    width: 45px;
+}
+
+

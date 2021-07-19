@@ -37,7 +37,6 @@ class CompanyController extends Controller
 			'image_url' =>'dimensions:min_width=100, min_height=100',
 		] );
 
-
 		$company = new Company;
 		$company->name = $request->name;
 		$company->email = $request->email;
@@ -55,7 +54,7 @@ class CompanyController extends Controller
 			$save = $company->image_url = $fileNameToStore;
 
 			if ($save) {
-				$file->storeAs( 'public/companies', $fileNameToStore );
+				$file->storeAs( 'crm/companies', $fileNameToStore );
 			}
 		}
 		$company->save();
@@ -90,7 +89,13 @@ class CompanyController extends Controller
 		$company->email = $request->email;
 		$company->phone_number = $request->phone_number;
 		$company->website = $request->website;
-		if ($request->hasFile( 'image_url' )) {
+		if ($request->hasFile( 'image_url' ))
+		{
+			$destination = 'crm/companies'.$company->image_url;
+			if(File::exists($destination))
+			{
+				File::delete($destination);
+			}
 			$file = $request->file( 'image_url' );
 			// Get file name with extension
 			$fileNameWithExt = $file->getClientOriginalName();
@@ -102,10 +107,11 @@ class CompanyController extends Controller
 			$save = $company->image_url = $fileNameToStore;
 
 			if ($save) {
-				$file->storeAs( 'public/companies', $fileNameToStore );
+				$file->storeAs( 'crm/companies', $fileNameToStore );
 			}
 		}
 		$company->save();
+
 		return Response::json(['success' => 'Company update successfully!', 'update_company' => $company], 201);
 
 	}

@@ -28,6 +28,7 @@ class Employee extends Model
 
     public function company()
 	{
-		return $this->belongsTo(Company::class, 'companies');
+		return $this->belongsTo(Company::class);
+
 	}
 }

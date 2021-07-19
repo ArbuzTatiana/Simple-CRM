@@ -23,7 +23,7 @@ class CompaniesTableSeeder extends Seeder
 				'email' => $faker->companyEmail,
 				'phone_number' => $faker->phoneNumber,
 				'website' => $faker->domainName,
-				'image_url' => $faker->image( null, 360, 360, 'animals', true ),
+				'image_url' => $faker->image( 'storage/app/public/crm/companies', 360, 360, null, false ),
 				'created_at' => now(),
 				'updated_at' => now(),
 			] );
