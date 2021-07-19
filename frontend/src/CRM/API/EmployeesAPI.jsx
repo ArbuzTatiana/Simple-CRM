@@ -29,4 +29,19 @@ export const employeesAPI = {
             })
     },
 
+    deleteEmployee(id) {
+        return instance.delete(`/${id}`)
+            .then(response => {
+                return response.data
+            })
+    },
+
+    updateEmployee(id, updatedEmployee) {
+        updatedEmployee.append("_method", "put");
+        return instance.post(`/${id}`, updatedEmployee)
+            .then(response => {
+                return response.data
+            })
+    },
+
 };

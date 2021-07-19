@@ -1,6 +1,8 @@
 export const GET_EMPLOYEE_LIST = 'GET_EMPLOYEE_LIST';
 export const SET_TOTAL_EMPLOYEES_COUNT = 'SET_TOTAL_EMPLOYEES_COUNT';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE';
+export const EDIT_EMPLOYEE = 'EDIT_EMPLOYEE';
 
 export const initialState = {
     employees: [],
@@ -24,16 +26,16 @@ const EmployeesReducer = (state = initialState, action) => {
                 newEmployee: [...state.employees, action.payload]
             };
 
-        case 'DELETE_COMPANY':
+        case 'DELETE_EMPLOYEE':
             return {
                 ...state,
-                companies: state.companies.filter(company => company.id !== action.payload)
+                employees: state.employees.filter(employee => employee.id !== action.payload)
             };
 
-        case 'EDIT_COMPANY':
+        case 'EDIT_EMPLOYEE':
             return {
                 ...state,
-                companies: state.companies.map((company) => company.id === action.payload.id ? {...action.payload} : company)
+                employees: state.employees.map((employee) => employee.id === action.payload.id ? {...action.payload} : employee)
             };
         case 'SET_CURRENT_PAGE':
             return {

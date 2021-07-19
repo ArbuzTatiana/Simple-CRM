@@ -2,10 +2,11 @@ import React, {useContext, useState, useEffect} from 'react';
 import './../../../App.css';
 import {EmployeesContext} from './../../Contexts/EmployeesContext';
 import {OverlayTrigger, Tooltip, Modal, Button} from 'react-bootstrap';
+import EditEmployees from './../Employees/EditEmployees';
 
 const EmployeeData = ({employee}) => {
 
-    const {} = useContext(EmployeesContext);
+    const {deleteEmployee} = useContext(EmployeesContext);
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -28,20 +29,20 @@ const EmployeeData = ({employee}) => {
             <td>
                 <OverlayTrigger
                     overlay={
-                        <Tooltip id={`top`}>
+                        <Tooltip id={`tooltip-top`}>
                             Edit
                         </Tooltip>
                     }>
-                    <button className="btn text-warning btn-act" data-toggle="modal"><i
+                    <button onClick={handleShow} className="btn text-warning btn-act" data-toggle="modal"><i
                         className="material-icons">&#xE254;</i></button>
                 </OverlayTrigger>
                 <OverlayTrigger
                     overlay={
-                        <Tooltip id={`top`}>
+                        <Tooltip id={`tooltip-top`}>
                             Delete
                         </Tooltip>
                     }>
-                    <button className="btn text-danger btn-act"
+                    <button onClick={() => deleteEmployee(employee.id)} className="btn text-danger btn-act"
                             data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
             </td>
@@ -51,7 +52,7 @@ const EmployeeData = ({employee}) => {
                     <Modal.Title>Edit Company</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Edit
+                    <EditEmployees theEmployees={employee}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

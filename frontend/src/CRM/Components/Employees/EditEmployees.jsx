@@ -3,15 +3,20 @@ import {Form, Button} from "react-bootstrap";
 import {EmployeesContext} from "../../Contexts/EmployeesContext";
 import Optionsdata from "./Optionsdata";
 
-const AddEmplyees = () => {
+const EditEmployees = ({theEmployees}) => {
 
-    const {addEmployee, employees} = useContext(EmployeesContext);
+    const {updateEmployee, employees} = useContext(EmployeesContext);
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [company, setCompany] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone_number, setPhone] = useState("");
+    console.log(theEmployees.company.name)
+
+    const id = theEmployees.id;
+
+
+    const [firstName, setFirstName] = useState(theEmployees.first_name);
+    const [lastName, setLastName] = useState(theEmployees.last_name);
+    const [company, setCompany] = useState(theEmployees.company.name);
+    const [email, setEmail] = useState(theEmployees.email);
+    const [phone_number, setPhone] = useState(theEmployees.phone_number);
 
 
     const handleSubmit = (e) => {
@@ -25,7 +30,7 @@ const AddEmplyees = () => {
         newEmployee.append("email", email);
         newEmployee.append("phone_number", phone_number);
 
-        addEmployee(newEmployee);
+        updateEmployee(id, newEmployee);
     };
 
     return (
@@ -62,9 +67,10 @@ const AddEmplyees = () => {
                         }}
                         required
                     >
-                        <option>Select company</option>
+                        <option>{theEmployees.company.name}</option>
 
                         <Optionsdata employees={employees}/>
+
                     </Form.Control>
                 </Form.Group>
 
@@ -87,11 +93,11 @@ const AddEmplyees = () => {
                     />
                 </Form.Group>
                 <Button onClick={handleSubmit} variant="success" type="submit" block>
-                    Add New Employee
+                    Edit Employee
                 </Button>
             </Form>
         </div>
     )
 }
 
-export default AddEmplyees;
+export default EditEmployees;

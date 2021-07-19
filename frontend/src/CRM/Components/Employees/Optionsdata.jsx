@@ -2,9 +2,8 @@ import React from 'react';
 
 const Optionsdata = ({employees}) => {
 
-    return(
+    return (
         <>
-            <option>Select company</option>
             {
                 employees.map(list =>
                     (
